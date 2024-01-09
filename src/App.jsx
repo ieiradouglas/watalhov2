@@ -61,7 +61,7 @@ function App() {
         <footer className="absolute bottom-0   text-white text-base">
           <div className="flex justify-center items-center gap-3 w-full h-20">
             <img src={logoDev} alt="Janela de Desenvolvimento" width="38px" />
-            <h3>Douglas Vieira da Silva</h3>
+            <h3>by Douglas Vieira da Silva</h3>
             <span className="animate-bounce h-5">|</span>
           </div>
         </footer>
