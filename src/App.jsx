@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
-  const [numero, setNumero] = useState()
+  const [numero, setNumero] = useState('')
 
   const notify = () => toast.warn('Número de telefone inválido!', {
     position: "bottom-left",
@@ -24,7 +24,7 @@ function App() {
 
 
   const handleButtonClick = () => {
-    if (numero.length < 12) {
+    if (numero.length < 11 || numero.length == 0) {
       notify()
     } else {
       if (numero) {
