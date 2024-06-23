@@ -1,15 +1,29 @@
-import { useState } from 'react'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from 'react-toastify'
+import { useState, useEffect } from 'react'
+import InputMask from 'react-input-mask'
 
 import logoWhatsapp from '../src/assets/logo-whatsapp.svg'
 
 import logoDev from '../src/assets/dev-icon.svg'
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+  const notifyStart = () => toast.info('Watalho agora tem um novo link:\nwww.watalho.com.br', {
+    position: "top-center",
+    autoClose: 10000,
+    hideProgressBar: true,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "dark",
+    className: 'toast-center',
+  });
 
-  const [numero, setNumero] = useState('')
+  useEffect(() => {
+    notifyStart()
+  }, [])
 
   const notify = () => toast.warn('Número de telefone inválido!', {
     position: "bottom-left",
@@ -22,18 +36,17 @@ function App() {
     theme: "dark",
   });
 
+  const [numero, setNumero] = useState('')
 
   const handleButtonClick = () => {
-    if (numero.length < 11 || numero.length == 0) {
+    const telefone = numero.replace(/\D/g, '');
+
+    if (telefone.length < 11 || telefone.length == 0) {
       notify()
     } else {
-      if (numero) {
-        window.open(`https://wa.me/+55${numero}`, '_blank');
-      }
+      window.open(`https://wa.me/+55${telefone}`, '_blank');
     }
-
   };
-
 
   return (
     <>
@@ -53,7 +66,8 @@ function App() {
               <input className="w-14 h-10 p-3" type="text" value="+55" disabled />
             </div>
             <div className="">
-              <input className="w-70 h-10 p-3" type="text" placeholder="22999999999" onKeyUp={(e) => setNumero(e.target.value)} />
+              <InputMask className="w-70 h-10 p-3" type="tel" mask="(99) 99999-9999" maskChar={null} value={numero} onChange={(e) => setNumero(e.target.value)} placeholder=" (21) 97462-7636" />
+
             </div>
           </div>
           <button className="bg-white p-4 rounded-lg w-40 mt-6" onClick={() => handleButtonClick()}>Conversar</button>
