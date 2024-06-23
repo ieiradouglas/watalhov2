@@ -9,7 +9,7 @@ import logoDev from '../src/assets/dev-icon.svg'
 
 
 function App() {
-  const notifyStart = () => toast.info('Watalho agora tem um novo link:\nwww.watalho.com.br', {
+  const notifyStart = () => toast.info(`Novo link: www.watalho.com.br`, {
     position: "top-center",
     autoClose: 10000,
     hideProgressBar: true,
