@@ -1,6 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css'
+import { Analytics } from "@vercel/analytics/react"
 import { ToastContainer, toast } from 'react-toastify'
-import { useState, useEffect } from 'react'
+import { useState, useLayoutEffect } from 'react'
 import InputMask from 'react-input-mask'
 
 import logoWhatsapp from '../src/assets/logo-whatsapp.svg'
@@ -9,21 +10,6 @@ import logoDev from '../src/assets/dev-icon.svg'
 
 
 function App() {
-  const notifyStart = () => toast.info(`Novo link: www.watalho.com.br`, {
-    position: "top-center",
-    autoClose: 10000,
-    hideProgressBar: true,
-    closeOnClick: false,
-    pauseOnHover: false,
-    draggable: false,
-    progress: undefined,
-    theme: "dark",
-    className: 'toast-center',
-  });
-
-  useEffect(() => {
-    notifyStart()
-  }, [])
 
   const notify = () => toast.warn('Número de telefone inválido!', {
     position: "bottom-left",
@@ -45,6 +31,7 @@ function App() {
       notify()
     } else {
       window.open(`https://wa.me/+55${telefone}`, '_blank');
+      setNumero("")
     }
   };
 
@@ -92,6 +79,7 @@ function App() {
         pauseOnHover
         theme="dark"
       />
+      <Analytics />
     </>
   )
 }
